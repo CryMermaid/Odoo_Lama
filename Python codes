@@ -1,0 +1,25 @@
+# models/help_desk_lama.py
+from odoo import models, fields
+
+class HelpDeskTicket(models.Model):
+    _name = 'help.desk.ticket'
+    _description = 'IT Help Desk Ticket'
+
+    name = fields.Char(string='Title', required=True)
+    description = fields.Text(string='Description')
+    priority = fields.Selection([('low', 'Low'), ('medium', 'Medium'), ('high', 'High')],
+                                string='Priority', default='medium')
+    category = fields.Many2one('help.desk.category', string='Category')
+    assigned_user = fields.Many2one('res.users', string='Assigned User')
+    status = fields.Selection([('new', 'New'), ('in_progress', 'In Progress'), ('resolved', 'Resolved')],
+                              string='Status', default='new')
+
+
+# models/help_desk_category.py
+from odoo import models, fields
+
+class HelpDeskCategory(models.Model):
+    _name = 'help.desk.category'
+    _description = 'Help Desk Category'
+
+    name = fields.Char(string='Category Name', required=True)
