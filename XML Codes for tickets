@@ -1,0 +1,54 @@
+<!-- views/help_desk_lama_views.xml -->
+<odoo>
+    <record id="view_help_desk_ticket_tree" model="ir.ui.view">
+        <field name="name">help.desk.ticket.tree</field>
+        <field name="model">help.desk.ticket</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="description"/>
+                <field name="priority"/>
+                <field name="category"/>
+                <field name="assigned_user"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_help_desk_ticket_form" model="ir.ui.view">
+        <field name="name">help.desk.ticket.form</field>
+        <field name="model">help.desk.ticket</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="priority"/>
+                    <field name="category"/>
+                    <field name="assigned_user"/>
+                    <field name="status"/>
+                </group>
+            </form>
+        </field>
+    </record>
+</odoo>
+
+<!-- views/help_desk_lama_menu.xml -->
+<odoo>
+    <data>
+        <menuitem id="menu_help_desk_lama" name="IT Help Desk" sequence="10"/>
+        <menuitem id="menu_help_desk_tickets" name="Tickets" parent="menu_help_desk_lama" action="action_help_desk_tickets"/>
+    </data>
+</odoo>
+
+<!-- views/help_desk_lama_actions.xml -->
+<odoo>
+    <data>
+        <record id="action_help_desk_tickets" model="ir.actions.act_window">
+            <field name="name">Help Desk Tickets</field>
+            <field name="res_model">help.desk.ticket</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+    </data>
+</odoo>
